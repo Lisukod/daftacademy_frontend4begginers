@@ -1,0 +1,1211 @@
+/*
+Przeglądarki internetowe nadają znacznikom HTML wartości początkowe,
+które się różnią w zależności od producenta (np. Chrome, Firefox, Opera, Internet Explorer, Microsoft Edge).
+Dlatego popularną praktyką jest tworzenie tzw. resetów,
+czyli plików CSS zawierających reguły, które nadpisują te wartości,
+aby były one jednolite niezalenie od przeglądarki.
+
+Więcej na ten temat: https://cssreset.com/what-is-a-css-reset/
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('images/background.svg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+h1{
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4.5px;
+}
+
+h2{
+    color: #EF009E;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 3.8px;
+    padding: 50px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ZAGADNIENIE PONADPROGRAMOWE
+
+Rekomendowany zestaw właściwości, które pozwalają na ukrycie tekstu w taki sposób,
+że będzie niewidoczny do standardowego użytkownika, a czytniki ekranowe wciąż będą go czytać.
+
+Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
+*/
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+
+/*
+Koniec sekcji pomocniczej
+*/
+
+/*
+Ustawiając sekcje nagłówka i stopki w pozycji 'fixed' sprawiamy,
+że niezależnie od pozycji paska przewijania elementy te będą znajdowały się
+w tej samej pozycji względem okna przeglądarki.
+Natomiast pozycję tę ustawiamy za pomocą parametrów 'top', 'bottom', 'right', 'left'.
+*/
+.page-header {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+
+.page-footer {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+}
+
+/*
+Lewy margines ustawiony na kontenerze z główną zawartością strony sprawia,
+że nie będzie ona nachodzić na nagłówek i stopkę niezależnie od pozycji paska przewijania.
+Na projekcie graficznym sekcja menu ma szerokość około 170px i jest oddalona od krawędzi ekranu
+o 50px, więc można założyć, że 220px marginesu będzie wartością stosunkowo bezpieczną.
+Z kolei spady (padding) nadane na kontener wyznaczają minimalną odległość, na jaką będzie oddalona
+treść strony od otaczających ją granic kontenera (wartość "0 10%" jest
+skrótem od padding-top: 0, padding-bottom: 0, padding-left: 10%, padding-right: 10%).
+Właściwość "text-align: right" przykleja zawartość do prawej strony
+(oddziałuje na elementy, które są elementami inline'owymi, np. tekst, znaczniki <a>, <span> czy elementy z nadanym stylem "display: inline-block").
+*/
+.page-content {
+    margin-left: 220px;
+    padding: 0 10%;
+    text-align: right;
+}
+
+/*
+Projekt graficzny zakłada, że każda sekcja strony będzie wypełniać całą wysokość okna przeglądarki
+lub więcej, jeśli zawartość danej sekcji jest wyższa. Dlatego świetnym rozwiązaniem
+będzie użycie jednostki "vh", która oznacza 1% wysokości okna przeglądarki z właściwością "min-height",
+która wymusza wysokość elementu na zadaną wartość lub wyższą.
+*/
+.content-section {
+    min-height: 100vh;
+}
+
+/*
+################################################
+Navigation Section
+################################################
+*/
+
+
+.page-navigation__item{
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 6.7px;
+    opacity: 0.5;
+}
+
+.page-navigation__item:hover{
+    opacity: 1;
+}
+
+.page-navigation__item:active{
+    letter-spacing: 6.5px;
+    opacity: 1;
+    
+}
+
+.page-navigation__items a{
+    text-decoration: none;
+    color: #EF009E;
+    line-height: 30px;
+    
+}
+
+/*
+################################################
+Band Memebers (Faces) Section
+################################################
+*/
+
+.band-members{
+    display: flex;
+    padding-top: 35vh;
+    flex-wrap: wrap;
+}
+
+.band-members__item{
+    opacity: 0.5;
+}
+
+.band-members__item:hover{
+    opacity: 1;
+}
+
+.band-members__item .band-members__name{
+    visibility: hidden;
+}
+
+.band-members__item:hover .band-members__name{
+    visibility: visible;
+}
+
+.band-members__item .band-members__desc{
+    visibility: hidden;
+}
+
+.band-members__item:hover .band-members__desc{
+    visibility: visible;
+}
+
+.band-members__name{
+    color:#DBD8FB;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.band-members__desc{
+    color: #CCC8FF;
+    text-align: left;
+    letter-spacing: 3px;
+    font-weight: lighter;
+    opacity: 0.5;
+}
+
+/*
+################################################
+About Section
+################################################
+*/
+
+#about img{
+    margin-right: 50px;
+    border-top: 3px solid #EF009E;
+}
+
+.about-section__desc{
+    padding: 40px;
+    margin-left: -50px;
+    width: 400px;
+    background-color: #270F33;
+    text-align: left;
+    font-weight: lighter;
+    position: relative;
+    left: 115px;
+    bottom: 300px;
+    border-bottom: 3px solid #EF009E;
+}
+
+.about-section__desc-header{
+    color: #DBD8FB;
+    letter-spacing: 3px;
+    line-height: 30px;
+}
+
+.about-section__desc-details{
+    color: #CCC8FF;
+}
+
+/*
+################################################
+Concerts Section
+################################################
+*/
+
+.concerts{
+    margin-left: 50px;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+}
+
+.concerts img{
+    width: 70%;
+    min-width: 250px;
+    border-bottom: 3px solid #EF009E;
+}
+
+.concerts p{
+    line-height: 5px;
+    text-align: left;
+    position: relative;
+    left: 180px;
+    max-width: 300px;
+}
+
+.concerts__date{
+    color: #DBD8FB;
+}
+
+.concerts__location{
+    color: #CCC8FF;
+    font-weight: lighter;
+    letter-spacing: 3.6px;
+}
+
+.concerts button{
+    position: relative;
+    bottom: 50px;
+    background-color: #25072E;
+    color: #CCC8FF;
+    border: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid rgb(204, 200, 255, 0);
+    border-radius: 4px;
+}
+
+.concerts button:hover, .concerts button:focus{
+    background-color: rgb(204, 200, 255, 0.1);
+}
+
+.concerts button:focus{
+    border: 2px solid rgb(204, 200, 255, .5);
+}
+
+button:focus{
+    outline:0;
+}
+
+/*
+################################################
+Video Section
+################################################
+*/
+
+#video iframe{
+    width: 950px;
+    height: 600px;
+    border-top: 3px solid #EF009E;
+    margin-right: 50px;
+}
+
+/*
+################################################
+Gallery Section
+################################################
+*/
+
+.gallery img{
+    max-width: 300px;
+    border-top: 3px solid #EF009E;
+}
+
+.gallery{
+    max-width: 950px;
+    margin-left: 300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery__item{
+    margin-top: 13px;
+    margin-left: 0px;
+    margin-right: 15px;
+}
+
+@supports(display: grid){
+    .gallery{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 100px);
+        row-gap: 120px;
+    }
+}
+
+/*
+################################################
+Contact Section
+################################################
+*/
+
+#contact{
+    text-align: center;
+}
+
+.content-section__header{
+    text-align: right;
+}
+
+#contact img, address{
+    display: inline-flex;
+}
+
+#contact img{
+    margin-left: 20px;
+}
+
+address{
+    position: relative;
+    bottom: 150px;
+    left: 100px;
+    text-align: left;
+    color: rgb(220, 218, 251, 0.4);
+    font-weight: lighter;
+}
+
+.form__input, .form__label{
+    display: block;
+}
+
+form{
+    position: relative;
+    left: 320px;
+    max-width: 300px;
+    text-align: left;
+    color: rgb(219, 216, 251, 0.4);
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.form__input{
+    border: none;
+    color: #DBD8FB;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    height: 30px;
+    width: 250px;
+    background-color: rgb(204, 200, 255, .1);
+}
+
+.form__field button{
+    background-color: rgba(35, 6, 44, 0.604);
+    color: #CCC8FF;
+    border: 1px solid #CCC8FF0a;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    padding: 10px;
+    letter-spacing: 2px;
+}
+
+.form__field button:hover{
+    border: 1px solid #CCC8FF7a;
+    background-color: rgba(35, 6, 44);
+}
+
+/*
+################################################
+Social Links Section
+################################################
+*/
+
+.social-links__link img{
+    width: 45px;
+    height: 45px;
+    margin-top: -15px;
+    opacity: 0.7;
+}
+
+.social-links__link img:hover{
+    opacity: 1;
+}
+
+/*
+################################################
+BP 1800px
+################################################
+*/
+
+@media screen and (max-width: 1800px) and (min-width: 1201px){
+
+    
+    .page-header{
+        position: relative;
+        top: auto;
+        left: auto;
+        text-align: center; 
+        margin: auto;
+    }
+
+    .page-footer{
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center; 
+        margin: auto;
+    }
+
+    .page-content{
+        margin: auto;
+    }
+
+    .content-section{
+        min-height: 1vh;
+    }
+
+    /*
+    ################################################
+    Band Memebers (Faces) Section
+    ################################################
+    */
+
+    .band-members{
+        padding-top: 10vh;
+    }
+
+    /*
+    ################################################
+    About Section
+    ################################################
+    */
+
+        #about img{
+            margin: auto;
+            width: 100%;
+        }
+
+        .about-section__desc{
+            padding: auto;
+            width: 450px;
+            left: auto;
+            bottom: auto;
+            margin: auto;
+        }
+
+    /*
+    ################################################
+    Concerts Section
+    ################################################
+    */
+
+    .concerts{
+        margin-left: auto;
+        max-width: 800px;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    }   
+
+    .concerts img{
+        width: 100%;
+    }
+
+    .concerts p{
+            left: auto;
+        }
+
+    /*
+    ################################################
+    Video Section
+    ################################################
+    */
+
+    #video iframe{
+        width: 800px;
+        height: 600px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /*
+    ################################################
+    Gallery Section
+    ################################################
+    */
+
+    .gallery{
+        max-width: 800px;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*
+    ################################################
+    Contact Section
+    ################################################
+    */
+
+    #contact img{
+        margin-left: auto;
+        width: 460px;
+        max-width: 570px;
+    }
+
+    address{
+        bottom: 90px;
+        left: 30px;
+        text-align: justify;
+    }
+
+    form{
+        left: auto;
+        margin: auto;
+        padding-left: 0px;
+        top: 50px;
+    }
+
+    /*
+    ################################################
+    Social Links Section
+    ################################################
+    */
+
+    .social-links__link img{
+        margin-top: auto;
+    }
+
+    .page-footer{
+        bottom: -160px;
+        max-width: 200px;
+    }
+
+    .page-footer ul{
+        display: flex;
+        list-style: none;
+    }
+
+}
+
+/*
+################################################
+BP 1200px
+################################################
+*/
+
+@media screen and (max-width: 1200px) and (min-width: 901px){
+
+    
+    .page-header{
+        position: relative;
+        top: auto;
+        left: auto;
+        text-align: center; 
+        margin: auto;
+    }
+
+    .page-footer{
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center;
+        margin: auto; 
+    }
+
+    .page-content{
+        margin: auto;
+    }
+
+    .content-section{
+        min-height: 1vh;
+    }
+
+    /*
+    ################################################
+    Band Memebers (Faces) Section
+    ################################################
+    */
+
+    .band-members{
+        padding-top: 10vh;
+        margin-left: 250px;
+    }
+
+    /*
+    ################################################
+    About Section
+    ################################################
+    */
+
+        #about img{
+            margin: auto;
+            width: 100%;
+        }
+
+        .about-section__desc{
+            padding: auto;
+            width: 450px;
+            left: auto;
+            bottom: auto;
+            margin: auto;
+        }
+
+    /*
+    ################################################
+    Concerts Section
+    ################################################
+    */
+
+    .concerts{
+        margin-left: auto;
+        max-width: 800px;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    }   
+
+    .concerts img{
+        width: 100%;
+    }
+
+    .concerts p{
+            left: auto;
+        }
+
+    /*
+    ################################################
+    Video Section
+    ################################################
+    */
+
+    #video iframe{
+        width: 800px;
+        height: 600px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /*
+    ################################################
+    Gallery Section
+    ################################################
+    */
+
+    .gallery{
+        max-width: 800px;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*
+    ################################################
+    Contact Section
+    ################################################
+    */
+
+    #contact img{
+        margin-left: auto;
+        width: 460px;
+        max-width: 570px;
+    }
+
+    address{
+        bottom: 90px;
+        left: 30px;
+        text-align: justify;
+    }
+
+    form{
+        left: auto;
+        margin: auto;
+        padding-left: 0px;
+        top: 50px;
+    }
+
+    /*
+    ################################################
+    Social Links Section
+    ################################################
+    */
+
+    .social-links__link img{
+        margin-top: auto;
+    }
+
+    .page-footer{
+        bottom: -160px;
+        max-width: 200px;
+    }
+
+    .page-footer ul{
+        display: flex;
+        list-style: none;
+    }
+
+}
+
+/*
+################################################
+BP 900px
+################################################
+*/
+
+@media screen and (max-width: 900px) and (min-width: 601px){
+
+    
+    .page-header{
+        position: relative;
+        top: auto;
+        left: auto;
+        text-align: center; 
+        margin: auto;
+    }
+
+    .page-footer{
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center; 
+    }
+
+    .page-content{
+        margin: auto;
+    }
+
+    .content-section{
+        min-height: 1vh;
+    }
+
+    /*
+    ################################################
+    Band Memebers (Faces) Section
+    ################################################
+    */
+
+    .band-members{
+        padding-top: 10vh;
+        margin-left: 100px;
+    }
+
+    /*
+    ################################################
+    About Section
+    ################################################
+    */
+
+        #about img{
+            margin: auto;
+            width: 450px;
+        }
+
+        .about-section__desc{
+            padding: auto;
+            width: 450px;
+            left: auto;
+            bottom: auto;
+            margin: auto;
+        }
+
+    /*
+    ################################################
+    Concerts Section
+    ################################################
+    */
+
+    .concerts{
+        margin-left: auto;
+        max-width: 500px;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    }   
+
+    .concerts img{
+        width: 100%;
+    }
+
+    .concerts p{
+            left: auto;
+        }
+
+    /*
+    ################################################
+    Video Section
+    ################################################
+    */
+
+    #video iframe{
+        width: 500px;
+        height: 400px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /*
+    ################################################
+    Gallery Section
+    ################################################
+    */
+
+    .gallery{
+        max-width: 500px;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*
+    ################################################
+    Contact Section
+    ################################################
+    */
+
+    #contact img, address{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #contact img{
+        margin-left: auto;
+        width: 460px;
+        max-width: 570px;
+    }
+
+    address{
+        bottom: -30px;
+        left: 30px;
+        text-align: justify;
+    }
+
+    form{
+        left: auto;
+        margin: auto;
+        padding-left: 0px;
+        top: 50px;
+    }
+
+    /*
+    ################################################
+    Social Links Section
+    ################################################
+    */
+
+    .social-links__link img{
+        margin-top: auto;
+    }
+
+    .page-footer{
+        bottom: -80px;
+        margin: auto;
+        max-width: 200px;
+    }
+
+    .page-footer ul{
+        display: flex;
+        list-style: none;
+    }
+
+}
+
+/*
+################################################
+BP 600px
+################################################
+*/
+
+@media screen and (max-width: 600px) and (min-width: 361px){
+
+    
+    .page-header{
+        position: relative;
+        top: auto;
+        text-align: center; 
+        margin: auto;
+    }
+
+    .page-footer{
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center; 
+    }
+
+    .page-content{
+        margin: auto;
+    }
+
+    /*
+    ################################################
+    Band Memebers (Faces) Section
+    ################################################
+    */
+
+    .band-members{
+        padding-top: 10vh;
+        margin-left: 100px;
+    }
+
+    /*
+    ################################################
+    About Section
+    ################################################
+    */
+
+        #about img{
+            margin: auto;
+            width: 450px;
+        }
+
+        .about-section__desc{
+            padding: auto;
+            width: 450px;
+            left: auto;
+            bottom: auto;
+            margin: auto;
+        }
+
+    /*
+    ################################################
+    Concerts Section
+    ################################################
+    */
+
+    .concerts{
+        margin-left: auto;
+        max-width: 500px;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    }   
+
+    .concerts img{
+        width: 100%;
+    }
+
+    .concerts p{
+            left: auto;
+        }
+
+    /*
+    ################################################
+    Video Section
+    ################################################
+    */
+
+    #video iframe{
+        width: 500px;
+        height: 400px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /*
+    ################################################
+    Gallery Section
+    ################################################
+    */
+
+    .gallery{
+        max-width: 500px;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*
+    ################################################
+    Contact Section
+    ################################################
+    */
+
+    #contact img, address{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #contact img{
+        margin-left: auto;
+        width: 460px;
+        max-width: 570px;
+    }
+
+    address{
+        bottom: -30px;
+        left: 30px;
+        text-align: justify;
+    }
+
+    form{
+        left: auto;
+        margin: auto;
+        padding-left: 0px;
+        top: 50px;
+    }
+
+    /*
+    ################################################
+    Social Links Section
+    ################################################
+    */
+
+    .social-links__link img{
+        margin-top: auto;
+    }
+
+    .page-footer{
+        bottom: -80px;
+        margin: auto;
+        max-width: 200px;
+    }
+
+    .page-footer ul{
+        display: flex;
+        list-style: none;
+    }
+
+}
+
+@media screen and (max-width: 360px){
+    
+    
+    .page-header{
+        position: relative;
+        top: auto;
+        left: auto;
+        text-align: center; 
+    }
+
+    .page-footer{
+        position: relative;
+        bottom: auto;
+        left: auto;
+        text-align: center; 
+    }
+
+    .page-content{
+        margin: auto;
+    }
+        
+    /*
+    ################################################
+    Band Memebers (Faces) Section
+    ################################################
+    */
+
+    .band-members{
+        padding-top: 10vh;
+    }
+
+    /*
+    ################################################
+    About Section
+    ################################################
+    */
+
+    #about img{
+        margin-right: auto;
+        margin-left: -20px;
+        width: 330px;
+    }
+
+    .about-section__desc{
+        padding: auto;
+        width: 355px;
+        left: auto;
+        bottom: auto;
+    }
+    
+    /*
+    ################################################
+    Concerts Section
+    ################################################
+    */
+
+    .concerts{
+        margin-left: auto;
+        max-width: 300px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }   
+
+    .concerts img{
+        width: 100%;
+    }
+
+    .concerts p{
+        left: auto;
+        }
+        
+        /*
+        ################################################
+    Video Section
+    ################################################
+    */
+
+    #video iframe{
+        width: 300px;
+        height: 400px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /*
+    ################################################
+    Gallery Section
+    ################################################
+    */
+
+    .gallery{
+        max-width: 300px;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*
+    ################################################
+    Contact Section
+    ################################################
+    */
+
+    #contact img, address{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #contact img{
+        margin-left: auto;
+        width: 260px;
+        max-width: 330px;
+    }
+
+    address{
+        bottom: -30px;
+        left: 30px;
+        text-align: justify;
+    }
+
+    form{
+        left: auto;
+        margin: auto;
+        padding-left: 0px;
+        top: 50px;
+    }
+
+    /*
+    ################################################
+    Social Links Section
+    ################################################
+    */
+
+    .social-links__link img{
+        margin-top: auto;
+    }
+
+    .page-footer{
+        bottom: -80px;
+        margin: auto;
+        max-width: 200px;
+    }
+
+    .page-footer ul{
+        display: flex;
+        list-style: none;
+    }
+}
